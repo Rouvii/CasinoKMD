@@ -1,0 +1,149 @@
+@startuml
+'https://plantuml.com/class-diagram
+
+Class Main
+Class Login
+Class Menu
+Class FileIO
+Class TextUI
+Class GUI
+Class User
+Class Account
+Class CoinFlipGame
+Class RoulettenGame
+Class Launcher
+
+
+Main -- Launcher
+Launcher-- Menu
+Menu -- Login
+Menu-- CoinFlipGame
+Menu -- RoulettenGame
+Login-- User
+User -- Account
+CoinFlipGame-- Account
+RoulettenGame *--Account
+
+
+
+class Main{
+
+
+}
+
+
+class Launcher{
+
+
+
+}
+
+class Menu{
+
+
+}
+
+
+class Login{
+ -User loggedInUser
+ -String usernameInput
+ -String passwordInput
+ FileIO io = new FileIO
+ TextUI ui = new TextUI
+ +void login(ArrayList<User>users)
+ +User getLoggedInUser()
+ +String getUsernameInput()
+ +String getPasswordInput()
+
+
+}
+
+
+class User{
+-double balance
+-String username
+-String password
+boolean loggedIn = false;
+
+
++User(String username, String password, double balance)
++getUsername()
++getPassword()
++getBalance()
++boolean isLoggedIn()
++String toString()
+}
+
+class Account{
+FileIO io = new FileIO
+
++Withdraw()
++Deposit()
++setBalance()
+
+
+
+}
+
+
+class CoinFlipGame{
+TextUI ui = new TextUI
+Account acc = new Account
++runCoinFlip()
++coinFlipDeposit()
+
+
+
+}
+
+
+
+class RoulettenGame{
+TextUI ui = new TextUI
+Account acc = new Account
++runRoulette()
++Even()
++Odd()
++RedOrBlack()
++FirstTwelve()
++SecondTwelve()
++ThirdTwelve()
++Green()
++NineteenToThirtySix()
++OneToEighteen()
+
+
+
+}
+
+
+
+class TextUI{
+-Scanner scan = new Scanner(System.in)
++String displayMsg(String msg)
++String getInput(String input)
+
+}
+
+
+class FileIO{
+ArrayList<User>User = new ArrayList<>();
+User user;
+
++readUserData()
++saveUserData(ArrayList<User>newUserList)
+
+
+
+
+}
+
+
+class GUI{
+
+
+}
+
+
+
+@enduml
